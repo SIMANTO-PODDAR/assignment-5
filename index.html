@@ -23,21 +23,38 @@
 </head>
 
 <body class="max-w-[1600px] mx-auto">
-    <section id="signIn" class="mt-64 ml-96"> <!-- Sign in Section -->
 
-        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+    <main>
 
-            <label class="label">Email</label>
-            <input type="email" class="input" placeholder="Email" />
+        <section id="signIn" class="min-h-screen flex items-center justify-center "> <!-- Sign in Section -->
 
-            <label class="label">Password</label>
-            <input type="password" class="input" placeholder="Password" />
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 grid gap-3.5">
+                <div class="img-text-div flex flex-col items-center">
+                    <div>
+                        <img class="h-[100px] w-[100px]" src="./img/github-logo.png" alt="github-logo">
+                    </div>
+                    <h1 class="text-2xl font-bold">GitHub Issues Tracker</h1>
+                    <p>Sign in to manage your issues</p>
+                </div>
 
-            <button class="btn  mt-4">Login</button>
-        </fieldset>
+                <label class="label font-black text-[14px]">Username</label>
+                <input id="login-name" type="text" class="input" placeholder="Enter Username" />
 
-    </section> <!-- END Sign in Section -->
+                <label class="label font-black text-[14px]">Password</label>
+                <input id="login-pas" type="password" class="input" placeholder="Enter Password" />
 
+                <button class="btn btn-active btn-primary" onclick="validation()">Sign In</button>
+            </fieldset>
+
+        </section> <!-- END Sign in Section -->
+
+        <section id="app-section" class="hidden">  <!-- Main App --> 
+            <h1>abcd</h1>
+        </section>
+
+
+
+    </main>
 
 
 
