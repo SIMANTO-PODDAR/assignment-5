@@ -48,9 +48,9 @@
 
         </section> <!-- END Sign in Section -->
 
-        <section id="app-section" class=""> <!-- ⚠️ ADD hidden --> <!-- Main App -->
+        <section id="app-section" class=" "> <!-- ⚠️ ADD hidden --> <!-- Main App -->
 
-            <nav class="flex justify-between p-2.5 bg-amber-50"> <!-- Nav Section -->
+            <nav class="flex justify-between p-2.5 bg-amber-50 rounded-2xl"> <!-- Nav Section -->
                 <div class=" flex align-middle">
                     <img class="h-9 w-9" src="./img/github-logo.png" alt="github-logo">
                     <h1 class="text-2xl font-bold ml-1">GitHub Issues Tracker</h1>
@@ -71,12 +71,22 @@
                 </div>
                 </div>
 
-            </nav>
-
-        </section> <!-- END Nav Section -->
+            </nav><!-- END Nav Section -->
 
 
+            <section class="max-w-[1400px] mx-auto"> <!-- Formatting Section-->
 
+                <section class="mt-[50px] flex gap-2 bg-amber-50 p-2.5 rounded-2xl"> <!-- Button Section -->
+
+                    <button onclick="filter('btn-all')" id="btn-all" class="btn w-[120px] btn-primary">All</button>
+                    <button onclick="filter('btn-open')" id="btn-open" class="btn w-[120px]">Open</button>
+                    <button onclick="filter('btn-closed')" id="btn-closed" class="btn w-[120px]">Closed</button>
+                </section> <!-- END Button Section -->
+
+
+
+            </section> <!-- END Formatting Section-->
+        </section> <!-- END Main App -->
     </main>
 
 
@@ -85,11 +95,6 @@
 
 
 
-
-
-
-
-    <script> // JS ***
 
 
 
