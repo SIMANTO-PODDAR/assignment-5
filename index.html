@@ -25,8 +25,7 @@
 <body class="max-w-[1600px] mx-auto">
 
     <main>
-
-        <section id="signIn" class="min-h-screen flex hidden items-center justify-center "> <!-- Sign in Section -->
+        <section id="signIn" class="min-h-screen flex  items-center justify-center "> <!-- Sign in Section -->
 
             <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 grid gap-3.5">
                 <div class="img-text-div flex flex-col items-center">
@@ -48,7 +47,7 @@
 
         </section> <!-- END Sign in Section -->
 
-        <section id="app-section" class=" "> <!-- ⚠️ ADD hidden --> <!-- Main App -->
+        <section id="app-section" class=" hidden "> <!-- ⚠️ ADD hidden --> <!-- Main App -->
 
             <nav class="flex justify-between p-2.5 bg-amber-50 rounded-2xl"> <!-- Nav Section -->
                 <div class=" flex align-middle">
@@ -82,6 +81,36 @@
                     <button onclick="filter('btn-open')" id="btn-open" class="btn w-[120px]">Open</button>
                     <button onclick="filter('btn-closed')" id="btn-closed" class="btn w-[120px]">Closed</button>
                 </section> <!-- END Button Section -->
+
+                <section class="mt-5 bg-amber-50 p-2.5 rounded-2xl">
+                    <!-- All Issues Section -->
+
+                    <section class="flex justify-between items-center"> <!-- Issue Top Bar-->
+
+                        <div class="flex items-center"> <!-- Top Bar Icon & Txt -->
+                            <div class=" w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center "> <img
+                                    class="w-8 h-8" src="./img/Aperture.png" alt=""></div>
+
+                            <div class="ml-2">
+                                <h1 class="text-xl font-bold"> <span>50</span> Issues</h1>
+                                <p>Track and manage your project issues</p>
+                            </div>
+
+                        </div><!-- END Top Bar Icon & Txt -->
+
+                        <div class="flex font-bold"> <!-- Top Status -->
+                            <div class="flex mr-1.5"><i class="fa-solid fa-circle text-[10px] pt-1 m-1 text-green-500"></i><p>Open</p></div>
+                            <div class="flex"><i class="fa-solid fa-circle text-[10px] pt-1 m-1 text-fuchsia-800"></i><p>Closed</p></div>
+                        </div> <!-- END Top Status -->
+
+                    </section><!-- END Issue Top Bar-->
+
+                    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2"> <!-- Issue Section-->
+
+                    </section> <!-- END Issue Section-->
+
+
+                </section> <!-- END All Issues Section -->
 
 
 
