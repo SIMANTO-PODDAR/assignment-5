@@ -14,11 +14,13 @@ function filter(id) {
     closedBtn.classList.remove('btn-primary');
 
     const activeBtn = document.getElementById(id).classList.add('btn-primary');
+    
 }
 
 
 // function & API All Issues
 const allIssue = () => {
+    loadingSpinnerS();
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues").then(res => res.json())
         .then(issueData => displayAllIssues(issueData.data));
 
@@ -95,14 +97,26 @@ function displayAllIssues(data) {
         // 3 Append
 
         allIssueParent.appendChild(issueDiv);
-
-
+        
+        loadingSpinnerH();
     });
 
 }
 
 
 
+
+//  loadingSpinner function
+function loadingSpinnerS(){
+   let spinner = document.getElementById('loading-spinner')
+   spinner.classList.remove('hidden');
+   spinner.classList.add('flex');
+}
+function loadingSpinnerH(){
+   let spinner = document.getElementById('loading-spinner')
+   spinner.classList.remove('flex');
+   spinner.classList.add('hidden');
+}
 
 
 
