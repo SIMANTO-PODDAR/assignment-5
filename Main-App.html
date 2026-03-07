@@ -42,9 +42,9 @@
                                 <path d="m21 21-4.3-4.3"></path>
                             </g>
                         </svg>
-                        <input type="search" required placeholder="Search issues..." />
+                        <input id="search-input" type="search" required placeholder="Search issues..." />
                     </label>
-                    <button class="btn rounded-[5px] btn-primary">+ New Issue</button>
+                    <button id="top-search" class="btn rounded-[5px] btn-primary" onclick="searchIsu()">Search</button>
                 </div>
                 </div>
 
@@ -63,7 +63,7 @@
                         class="btn w-[120px]">Closed</button>
                 </section> <!-- END Button Section -->
 
-                <section class="mt-5 bg-amber-50 rounded-2xl p-6">
+                <section id="all-issues-d" class="mt-5 bg-amber-50 rounded-2xl p-6">
                     <!-- All Issues Section -->
 
                     <section id="loading-spinner" class="hidden items-center justify-center"> <!-- loading-spinner -->
@@ -120,9 +120,15 @@
 
                     </div> <!-- END Closed Issue Cards-->
 
-
+                    
+                    
                 </section> <!-- END All Issues Section -->
+                
+                <div id="search-issue-p"
+                    class="grid hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 justify-items-center">
+                    <!-- search Issue Cards-->
 
+                </div> <!-- END search Issue Cards-->
 
 
             </section> <!-- END Formatting Section-->

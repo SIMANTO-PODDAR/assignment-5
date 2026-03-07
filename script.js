@@ -1,9 +1,14 @@
 // Get Elements
+const allIssueD = document.getElementById('all-issues-d');
+const searchIssueParent = document.getElementById('search-issue-p');
 const allIssueParent = document.getElementById('all-issue-p');
 const openIssueParent = document.getElementById('open-issue-p');
 const closedIssueParent = document.getElementById('closed-issue-p');
 const topBarCounter = document.getElementById('top-bar-counter');
 const modal = document.getElementById('modal');
+
+const searchInput = document.getElementById('search-input'); 
+const search = document.getElementById('top-search');
 
 // Get Top Btn 
 const allBtn = document.getElementById('btn-all');
@@ -27,6 +32,8 @@ function filter(id, id2) {
     const activeParent = document.getElementById(id2).classList.remove('hidden');
 
     allIssue();
+    allIssueD.classList.remove('hidden');
+    searchIssueParent.classList.add('hidden');
     loadingSpinnerH();
 }
 
@@ -366,7 +373,95 @@ function modalHtml(crd) {
     my_modal_1.showModal();
 }
 
+// function search
+function searchIsu(){
+   let inputValue = searchInput.value;
 
+   fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`)
+   .then(res => res.json())
+        .then(issueData => searchRI(issueData.data));
+}
+
+function searchRI(data) {
+    allIssueD.classList.add('hidden');
+    searchIssueParent.classList.remove('hidden');
+    searchIssueParent.innerHTML = '';
+
+    data.forEach(issue => {
+        // 1 Create Element
+        let searchIsuM = document.createElement('div');
+
+        // 2 Set HTML
+        searchIsuM.innerHTML = `
+                                <div
+                            class="w-[320px] h-80 border-t-3 shadow-md outline-[0.5px] rounded-xl ${issue.status == "open" ? 'outline-green-500 border-green-500' : 'outline-fuchsia-800 border-fuchsia-800'} bg-sky-50" onclick="modalSet(${issue.id});">
+                            <!-- Card -->
+
+                            <div class="p-3">
+
+                                <div class="flex justify-between mb-1">
+                                    <span class="w-5 h-5 bg-emerald-300 rounded-full flex items-center justify-center">${issue.status == "open" ? '<img class=" w-6 h-6 " src="./img/OpenStatus.png" alt="Open-Status">' : '<img class=" w-6 h-6 " src="./img/ClosedStatus.png" alt="Closed">'}</span>
+                                    <span class="w-20 h-6 pl-1.5 bg-yellow-200 rounded-2xl">${issue.priority}</span>
+                                </div>
+
+                                <h1 class="font-bold text-xl my-1.5">${issue.title}</h1>
+
+                                <p class="mb-3 line-clamp-2">${issue.description}</p>
+
+                                <div class="my-1.5 pt-1.5 flex">
+                                    <div
+                                        class=" ${issue.labels.includes("bug") ? 'flex' : 'hidden'}   p-1 ml-1 bg-red-100 text-red-700 outline-red-500 rounded-2xl w-16  items-center justify-center outline-1 ">
+                                        <i class="fa-solid fa-bug"></i>
+                                        <p class="text-[12px]">BUG</p>
+                                    </div>
+
+                                    <div
+                                        class=" ${issue.labels.includes("help wanted") ? 'flex' : 'hidden'} p-1 ml-1 bg-yellow-100 text-yellow-700 outline-yellow-500 rounded-2xl w-40 outline-1 flex items-center justify-center">
+                                        <i class="fa-solid fa-life-ring"></i>
+                                        <p class="text-[12px]">HELP WANTED</p>
+                                    </div>
+
+                                    <div
+                                        class="  ${issue.labels.includes("enhancement") ? 'flex' : 'hidden'} p-1 ml-1 bg-green-100 text-green-700 outline-green-500 rounded-2xl w-40 outline-1 flex items-center justify-center">
+                                        <i class="fa-solid fa-arrow-up-right-dots"></i>
+                                        <p class="text-[12px]">ENHANCEMENT </p>
+                                    </div>
+
+                                    <div
+                                        class="  ${issue.labels.includes("documentation") ? 'flex' : 'hidden'} p-1 ml-1 bg-green-100 text-green-700 outline-green-500 rounded-2xl w-40 outline-1 flex items-center justify-center">
+                                        <i class="fa-brands fa-readme"></i>
+                                        <p class="text-[12px]">DOCUMENTATION</p>
+                                    </div>
+
+                                    <div
+                                        class="  ${issue.labels.includes("good first issue") ? 'flex' : 'hidden'} p-1 ml-1 bg-yellow-100 text-yellow-700 outline-yellow-500 rounded-2xl w-40 outline-1 flex items-center justify-center">
+                                        <i class="fa-solid fa-file-circle-exclamation "></i>
+                                        <p class="text-[12px]"> GOOD FIRST ISSUE</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="divider my-2"></div>
+
+                            <div class="p-3">
+                                <p> Author <span> #${issue.author} </p>
+                                <p class="pb-0.5"> Created At <span> ${issue.createdAt} </span></p>
+                            </div>
+
+                        </div> <!-- END Card -->
+        `
+
+        // 3 Append
+
+
+        searchIssueParent.appendChild(searchIsuM);
+
+
+        loadingSpinnerH();
+    });
+}
 
 // Cll All Btn
 allBtn.addEventListener('click', function () {
