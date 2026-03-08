@@ -10,6 +10,8 @@ const modal = document.getElementById('modal');
 const searchInput = document.getElementById('search-input');
 const search = document.getElementById('top-search');
 
+const noSearchIssue = document.getElementById('no-search-issue');
+
 // Get Top Btn 
 const allBtn = document.getElementById('btn-all');
 const openBtn = document.getElementById('btn-open');
@@ -26,6 +28,7 @@ function filter(id, id2) {
     allIssueParent.classList.add('hidden')
     openIssueParent.classList.add('hidden')
     closedIssueParent.classList.add('hidden')
+    noSearchIssue.classList.add('hidden')
 
 
     const activeBtn = document.getElementById(id).classList.add('btn-primary');
@@ -378,6 +381,12 @@ function searchIsu() {
     loadingSpinnerS();
     let inputValue = searchInput.value;
 
+    if(inputValue == ''){
+        alert('Search field cannot be empty!')
+        filter('btn-all'  , 'all-issue-p');
+        return;
+    }
+
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`)
         .then(res => res.json())
         .then(issueData => searchRI(issueData.data));
@@ -386,6 +395,7 @@ function searchIsu() {
 function searchRI(data) {
     allIssueD.classList.add('hidden');
     searchIssueParent.classList.remove('hidden');
+    noSearchIssue.classList.add('hidden');
     searchIssueParent.innerHTML = '';
 
     allBtn.classList.remove('btn-primary');
@@ -464,8 +474,20 @@ function searchRI(data) {
         searchIssueParent.appendChild(searchIsuM);
 
 
-        loadingSpinnerH();
     });
+    // new
+    searchEmpty();
+    loadingSpinnerH();
+}
+
+function searchEmpty(){
+    let scc = searchIssueParent.childElementCount;
+    if(scc){
+        noSearchIssue.classList.add('hidden');
+    }
+    if(!scc){
+        noSearchIssue.classList.remove('hidden');
+    }
 }
 
 // Cll All Btn
